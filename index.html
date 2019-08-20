@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ToDoList</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/jquery.toast.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <!-- 增加任務 -->
+            <div id="addTask" class="col-sm-12">
+                <form>
+                    <div class="form-group">
+                        <label for="ymdTextBox">
+                            <span class=""></span>
+                        </label>
+                        <input type="text" id="ymdTextBox" v-model="doTitle" class="form-control"
+                            placeholder="Add a Task">
+                    </div>
+                    <div class="pull-right">
+                        <!-- addButtonClick -->
+                        <button type="button" id="addButton" v-on:click="addButtonClick"
+                            class="btn btn-success btn-style">
+                            <span class=""></span>send
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!-- 增加任務_END -->
+
+            <!-- 任務列表 -->
+            <div id="task" class="col-sm-12">
+                <h2>代辦事項</h2>
+                <ul id="latestNews" class="list-group">
+                    <li class="list-group-item" v-for="addItem,index in addListHere">
+                        <!-- okButtonClick-->
+                        <button id="btn-okcheck" class="btn btn-style" v-on:click="okButtonClick(index)"
+                            v-bind:class="{yellow:addItem.isBtnStyleYellow, grey:addItem.isBtnStyleGrey}"
+                            style="width: 30px">OK</button>&nbsp;
+                        {{addItem.doTitle}}
+                        <span class="pull-right">
+                            <!-- editButtonClick -->
+                            <button id="editButton" v-bind:disabled="addItem.isButtonDisabled"
+                                class="btn btn-info btn-style" v-on:click="editButtonClick(index)">Edit</button>&nbsp;
+                            <!-- deleteButtonClick -->
+                            <button class="btn btn-danger btn-style"
+                                v-on:click="deleteButtonClick(index)">Delete</button>
+                        </span>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- 任務列表_END -->
+        </div>
+    </div>
+
+
+    <!-- JS -->
+    <script type="text/javascript" src="js/vue.js"></script>
+
+
+</body>
+
+</html>
